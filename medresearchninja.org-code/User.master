@@ -1,0 +1,527 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="User.master.cs" Inherits="User" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- css file -->
+    <link rel="shortcut icon" href="/new-img/fab.png" type="image/x-icon" />
+    <link href="/css/dashbord_navitaion.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/jquery-ui.min.css">
+    <link rel="stylesheet" href="/css/ace-responsive-menu.css">
+    <link rel="stylesheet" href="/css/menu.css">
+    <link rel="stylesheet" href="/css/fontawesome.css">
+    <link rel="stylesheet" href="/css/flaticon.css">
+    <link rel="stylesheet" href="/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="/css/animate.css">
+    <link rel="stylesheet" href="/css/slider.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/ud-custom-spacing.css">
+    <!-- Responsive stylesheet -->
+    <link rel="stylesheet" href="/css/responsive.css">
+    <!-- Title -->
+    <title>MedResearch Ninja
+    </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Favicon -->
+    <style>
+        header.nav-homepage-style .ace-responsive-menu a {
+            color: #ffffff;
+            font-size: 18px;
+            font-family: var(--title-font-family);
+            font-weight: 600;
+        }
+
+        .user-name h6 {
+            color: #fff;
+        }
+
+        .header-logo img {
+            width: 200px;
+        }
+
+        .dashboard__sidebar {
+            margin-top: 0px;
+            position: sticky !important;
+            top: 0px;
+        }
+
+        .header_right_widgets li:last-child a {
+            height: auto;
+            line-height: initial;
+            margin: 0;
+            display: flex;
+            gap: 1rem;
+            width: auto;
+            align-items: center;
+        }
+
+        .right-side a {
+            color: #fff;
+        }
+
+        .new-profile .btn {
+            margin-top: 15px;
+        }
+
+        .menubar img {
+            filter: invert(1);
+        }
+
+        .new-profile {
+            display: block !important;
+        }
+
+        .user_setting_content .dropdown-item {
+            line-height: 30px !important;
+        }
+
+
+
+        .new-join {
+            display: none;
+        }
+
+        .header {
+            background: #000;
+        }
+
+        .new-head {
+            height: unset !important;
+        }
+
+        a.mobile_logo {
+            width: 150px;
+        }
+
+            a.mobile_logo img {
+                height: 100%;
+                width: 100%;
+                object-fit: contain;
+            }
+
+        @media (min-width:992px) and (max-width:1199px) {
+            header.nav-homepage-style .ace-responsive-menu a {
+                font-size: 16px !important;
+            }
+        }
+
+        @media (min-width: 320px) and (max-width: 767px) {
+
+
+            .new-profile .btn {
+                margin-top: 0px !important;
+            }
+
+                .new-profile .btn img {
+                    height: 24px !important;
+                    width: 24px !important;
+                }
+        }
+
+        @media (min-width: 768px) and (max-width: 991px) {
+
+
+            .new-profile .btn {
+                margin-top: 0px !important;
+            }
+
+                .new-profile .btn img {
+                    height: 24px !important;
+                    width: 24px !important;
+                }
+        }
+
+        @media (max-width: 1199px) {
+            /* for screen 992px  */
+            .right-side.text-end {
+                display: flex;
+            }
+        }
+
+        .sidebar_list_item {
+            margin-bottom: 5px;
+        }
+    </style>
+    <style>
+        .badge-circle {
+            background-color: #fff;
+            color: #000;
+            font-size: 12px;
+            font-weight: bold;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+
+        .items-center {
+            position: relative;
+        }
+    </style>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <div class="wrapper ovh">
+        <div class="preloader">
+            <img src="/image/orange_circles.gif" height="100" width="100" />
+        </div>
+        <form id="form1" runat="server">
+            <div class="new-head ">
+                <section class="header-top-home11 bg-dark pt10 pb10  d-lg-block  d-none">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12 text-end ">
+                                <a class="ud-btn btn-thm add-joining me-3" href="/signup.aspx">Become a Member </a>
+                                <a class="ud-btn btn-thm1 add-joining1" href="/login.aspx">Login</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Main Header Nav -->
+                <header class="header-nav nav-homepage-style main-menu border-0">
+                    <!-- Ace Responsive Menu -->
+                    <nav class="posr">
+                        <div class="container posr">
+                            <div class="row align-items-center justify-content-between">
+                                <div class="col-auto">
+                                    <div class="logos d-flex justify-content-start align-items-center ">
+                                        <a class="header-logo logo1" href="/">
+                                            <img src="/new-img/logo4.png" alt="Header Logo"></a>
+                                        <a class="header-logo logo2" href="/">
+                                            <img src="/new-img/logo4.png" alt="Header Logo"></a>
+                                    </div>
+
+                                </div>
+                                <div class="col-lg-8 col-xl-8 px-0 ">
+                                    <div class="d-flex align-items-center justify-content-end">
+
+
+                                        <!-- Responsive Menu Structure-->
+                                        <ul id="respMenu" class="ace-responsive-menu" data-menu-style="horizontal">
+                                            <li class="visible_list"><a class="list-item" href="/"><span class="title">Home</span></a>
+                                                <!-- Level Two-->
+
+                                            </li>
+                                            <li class="visible_list"><a class="list-item" href="/about-us.aspx"><span class="title">About Us</span></a>
+
+                                            </li>
+
+                                            <li class="visible_list"><a class="list-item" href="javascript:void(0);"><span class="title">Community</span></a>
+                                                <ul>
+                                                    <li><a href="/latest-work.aspx">Latest Projects</a></li>
+
+                                                    <li><a href="/discussion-forum.aspx">Discussion Forum</a></li>
+
+
+                                                    <li><a href="/white-paper.aspx">Whitepaper Journel </a></li>
+
+                                                    <li><a href="/resources.aspx">Resources </a></li>
+                                                    <li><a href="/case-submission.aspx">Submit a Topic </a></li>
+
+
+
+                                                </ul>
+                                            </li>
+                                            <li class="visible_list"><a class="list-item " href="/testimonials.aspx">Testimonials</a></li>
+
+
+                                            <li class="visible_list"><a class="list-item " href="/career.aspx">Career </a>
+
+                                            </li>
+                                            <li class="visible_list"><a class="list-item " href="/blogs.aspx">Blogs  </a>
+
+                                            </li>
+
+                                            <li class="visible_list"><a class="list-item " href="/contact-us.aspx">Contact Us</a></li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                                <%-- <div class="col-auto col-lg-auto new-block">
+                                    <div class="text-center text-lg-end header_right_widgets">
+                                        <ul class="dashboard_dd_menu_list d-flex align-items-center justify-content-center justify-content-sm-end mb-0 p-0">
+
+                                            <li class="user_setting">
+                                                <div class="dropdown">
+                                                    <a class="btn" href="javascript:void(0);" data-bs-toggle="dropdown">
+                                                        <%=StrUserImage %>
+                                                        <div class="user-name">
+                                                            <h6 class="mb0"><%=StrUserName %></h6>
+                                                            <span class="" style="color: #ff7f3e">Active</span>
+                                                        </div>
+                                                    </a>
+
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </div>--%>
+                            </div>
+                        </div>
+                    </nav>
+                </header>
+            </div>
+
+            <div id="page" class="mobilie_header_nav stylehome1">
+                <div class="mobile-menu">
+                    <div class="header bdrb1">
+                        <div class="menu_and_widgets">
+                            <div class="mobile_menu_bar d-flex justify-content-between align-items-center">
+                                <a class="mobile_logo" href="/">
+                                    <img src="/new-img/logo4.png" alt=""></a>
+                                <div class="right-side text-end">
+                                    <div class="dropdown new-profile">
+                                        <a class="btn" href="/javascript:void(0);" data-bs-toggle="dropdown">
+                                            <%--                                            <img src="/images/resource/user.png" alt="user.png">--%>
+                                            <%=StrUserImage %>
+                                            <div class="user-name">
+                                                <h6 class="mb0"><%=StrUserName %><span class='arrow'></span></h6>
+                                            </div>
+                                        </a>
+                                        <div class="dropdown-menu d-none">
+                                            <div class="user_setting_content">
+                                                <a class="dropdown-item" href="/general-information.aspx">General Information</a>
+
+                                                <a class="dropdown-item" href="/member-profile.aspx"><i class="flaticon-home     mr10"></i>My Profile</a>
+                                                <a class="dropdown-item" href="/my-payment.aspx"><i class="flaticon-receipt mr10"></i>Projects Dues</a>
+                                                <a class="dropdown-item" href="/recent-projects.aspx"><i class="flaticon-document mr10"></i>Recent Projects</a>
+
+                                                <a class="dropdown-item" href="/my-projects.aspx"><i class="flaticon-like mr10"></i>My Projects</a>
+                                                <a class="dropdown-item" href="/my-discussion.aspx"><i class="flaticon-chat mr10"></i>My Discussion</a>
+                                                <a class="dropdown-item" href="/my-blueprintrx.aspx"><i class="flaticon-review mr10"></i>My BlueprintRX</a>
+                                                <a class="dropdown-item" href="/my-portfolio.aspx"><i class="flaticon-receipt mr10"></i>Build My Research Portfolio</a>
+                                                <%--<a class="dropdown-item"  href="/"><i class="flaticon-logout mr10"></i>Logout</a>--%>
+                                                <asp:LinkButton class="dropdown-item" ID="lnkLogout" runat="server" OnClick="btnLogout_Click"><i class="flaticon-logout mr15"></i>Logout</asp:LinkButton>
+
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <a class="menubar ml30" href="#menu">
+                                        <img src="/images/mobile-dark-nav-icon.svg" alt="nav dark" /></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="posr">
+                            <div class="mobile_menu_close_btn"><span class="far fa-times"></span></div>
+                        </div>
+                    </div>
+                </div>
+                <nav id="menu" class="">
+                    <ul>
+                        <li><a href="/">Home</a>
+
+                        </li>
+                        <li><span>Community</span>
+                            <ul>
+                                <li><a href="/latest-work.aspx">Latest Projects</a></li>
+                                <li><a href="/discussion-forum.aspx">Discussion Forum</a></li>
+                                <li><a href="/white-paper.aspx">Whitepaper</a></li>
+                                <li><a href="/resources.aspx">Resources</a></li>
+                                <li><a href="/case-submission.aspx">Submit a Topic </a></li>
+                            </ul>
+                        </li>
+                        <li><a href="/about-us.aspx">About Us</a>
+
+                        </li>
+                        <li><a href="/testimonials.aspx">Testimonials </a>
+
+                        </li>
+                        <li><a href="/career.aspx">Career</a>
+
+                        </li>
+                        <li><a href="/blogs.aspx">Blogs </a>
+
+                        </li>
+                        <li><a href="/contact-us.aspx">Contact Us</a>
+
+                        </li>
+                        <li class="py-3 px-3"><a href="/login.aspx" class="ud-btn1 btn-thm  w-50 ">Login</a>
+
+                        </li>
+                        <!-- Only for Mobile View -->
+                    </ul>
+                </nav>
+            </div>
+            <div class="body_content">
+
+                <div>
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+                <section class="footer-style1 at-home6 bg-dark section-padding pb-0">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-5">
+                                <div class="link-style1 mb-4 mb-sm-5">
+
+                                    <h5 class="text-white mb15">Contact Info</h5>
+
+
+                                    <a class="app-list d-flex align-items-center mb20" target="_blank" href="mailto:connect@medresearchninja.org">
+                                        <i class="fa-solid fa-envelope mr15"></i>
+                                        <h6 class="app-title fz15 fw400 mb-0">connect@medresearchninja.org</h6>
+                                    </a>
+                                    <a class="app-list d-flex align-items-center mb20" target="_blank" href="tel:+919364040500">
+                                        <i class="fa-solid fa-phone mr15"></i>
+                                        <h6 class="app-title fz15 fw400 mb-0">+91 9364040500</h6>
+                                    </a>
+                                    <a class="app-list d-flex align-items-center mb20 " target="_blank" href="https://wa.me/+919945275295">
+                                        <i class="fa-brands fa-whatsapp mr15"></i>
+                                        <h6 class="app-title fz15 fw400 mb-0">Connect on whatsapp</h6>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 col-lg-3">
+                                <div class="link-style1 mb-4 mb-sm-5">
+                                    <h5 class="text-white mb15">Quick Links</h5>
+                                    <ul class="ps-0">
+                                        <li><a href="/about-us.aspx">About Us</a></li>
+                                        <li><a href="/javascript:void(0);">Career</a></li>
+                                        <li><a href="/blogs.aspx">Blogs </a></li>
+                                        <li><a href="/testimonials.aspx">Testimonials   </a></li>
+                                        <li><a href="/privacy-policy.aspx">Privacy Policy</a></li>
+                                        <li><a href="/terms-and-conditions.aspx">Terms and Conditions</a></li>
+                                        <li><a href="/refund-policy.aspx">Refund Policy</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-lg-2">
+                                <div class="link-style1 mb-4 mb-sm-5">
+                                    <h5 class="text-white mb15">Community</h5>
+                                    <ul class="ps-0">
+                                        <li><a href="/white-paper.aspx">Whitepaper</a></li>
+                                        <li><a href="/discussion-forum.aspx">Discussion Forum</a></li>
+                                        <li><a href="/resources.aspx">Resources</a></li>
+
+                                        <li><a href="/latest-work.aspx">Latest Projects</a></li>
+                                        <li><a href="/case-submission.aspx">Submit a Topic</a></li>
+
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-lg-4">
+                                <div class="footer-widget">
+                                    <div class="footer-widget ">
+                                        <div class="mailchimp-widget">
+                                            <h5 class="title text-white mb20">Subscribe Now</h5>
+                                            <span class="spnmail text-danger"></span>
+                                            <div class="mailchimp-style1 at-home11">
+                                                <input runat="server" textmode="email" type="email" class="form-control txtmail" id="txtmail" placeholder="Your email address">
+                                                <button type="submit" class="btnmail">Send</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="social-widget mt20 ">
+                                        <div class="social-style1">
+                                            <a class=" text-white me-2 fw500 fz17" href="javascript:void(0);">Follow us</a>
+                                            <a href="javascript:void(0);"><i class="fab fa-facebook-f list-inline-item"></i></a>
+                                            <a href="javascript:void(0);"><i class="fab fa-twitter list-inline-item"></i></a>
+                                            <a href="javascript:void(0);"><i class="fab fa-instagram list-inline-item"></i></a>
+                                            <a href="javascript:void(0);"><i class="fab fa-linkedin-in list-inline-item"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                    <div class="container white-bdrt1 py-4">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="text-center text-lg-start">
+                                    <p class="copyright-text mb-0 text-white-light ff-heading">© 2024 MedResearch Ninja. All rights reserved.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="text-center text-lg-end">
+                                    <p class="copyright-text mb-0 text-white-light ff-heading">Website Designed By <a href="https://www.nextwebi.com/" class="new-color">Nextwebi</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <a class="scrollToHome at-home2" href="javascript:void(0);"><i class="fas fa-angle-up"></i></a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Wrapper End -->
+    <!-- Wrapper End -->
+    <script src="/js/jquery-3.6.4.min.js"></script>
+    <script src="/js/jquery-migrate-3.0.0.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap-select.min.js"></script>
+    <script src="/js/jquery.mmenu.all.js"></script>
+    <script src="/js/dashboard-script.js"></script>
+    <script src="/js/ace-responsive-menu.js"></script>
+    <script src="/js/jquery-scrolltofixed-min.js"></script>
+    <script src="/js/wow.min.js"></script>
+    <script src="/js/owl.js"></script>
+    <script src="/js/jquery.counterup.js"></script>
+    <script src="/js/isotop.js"></script>
+    <!-- Custom script for all pages -->
+    <script src="/js/script.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(document.body).on("click", ".btnmail", function (e) {
+                e.preventDefault();
+                var mail = $("#txtmail").val();
+                $(".spnmail").html("");
+                var count = 1;
+
+                if (mail === "") {
+                    count = 0;
+                    $(".spnmail").html("Please enter Email Id");
+                }
+                if (count === 1) {
+                    $.ajax({
+                        type: 'POST',
+                        url: "/Default.aspx/EmailSubscriptions",
+                        contentType: 'application/json; charset=utf-8',
+                        dataType: "json",
+                        data: JSON.stringify({ mail: mail }),
+                        success: function (data2) {
+                            if (data2.d === "Success") {
+                                Snackbar.show({ pos: 'top-right', text: 'Thank you for subscribing.', actionTextColor: '#fff', backgroundColor: '#ff7f3e' });
+                                $("#txtmail").val("");
+                            } else if (data2.d === "Exists") {
+                                Snackbar.show({ pos: 'top-right', text: 'Email already exists.', actionTextColor: '#fff', backgroundColor: '#ff7f3e' });
+                            } else {
+                                Snackbar.show({ pos: 'top-right', text: 'Oops...! There is some problem right now. Please try again later.', actionTextColor: '#fff', backgroundColor: '#ff7f3e' });
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+<script>
+  window.MEDRESEARCH_API_URL = 'http://localhost:8001';
+</script>
+<script src="js/medresearch-chat.js"></script>
+</body>
+</html>

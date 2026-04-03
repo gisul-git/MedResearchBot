@@ -1,0 +1,263 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="testimonials.aspx.cs" Inherits="sitemap" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+    <style>
+        header.nav-homepage-style {
+            background: #000;
+            position: relative;
+        }
+
+
+
+        .breadcumb-section {
+            padding: 0px 0px;
+        }
+
+        .logos.me-4 {
+            position: absolute;
+        }
+
+        .new-li {
+            display: flex;
+            gap: 1rem;
+            padding-left: 0px;
+            justify-content: start;
+        }
+
+        .new0bg {
+            background-color: #ff7f3e;
+        }
+
+        .new-color {
+            color: #ff7f3e;
+        }
+
+        .freelancer-style1.hover-box-shadow img {
+            border-radius: 12px;
+            height: 100%;
+            width: 100%;
+        }
+
+        .thumb.mb30 {
+            height: 300px;
+            width: 100%;
+        }
+
+        .service-card-6 {
+            height: 100%;
+        }
+
+            .service-card-6 .inner {
+                border-radius: 5px;
+                padding: 45px 35px;
+                position: relative;
+                z-index: 1;
+                border: 1px solid #fff;
+                height: 100%;
+            }
+
+                .service-card-6 .inner .icon {
+                    position: relative;
+                    display: inline-block;
+                    margin-bottom: 15px;
+                }
+
+                    .service-card-6 .inner .icon img {
+                        max-height: 60px;
+                        filter: invert(1);
+                    }
+
+                .service-card-6 .inner .content {
+                    padding-top: 10px;
+                }
+
+                    .service-card-6 .inner .content .title {
+                        font-weight: 700;
+                        font-size: 20px;
+                        color: #fff;
+                        line-height: 32px;
+                        margin-bottom: 8px;
+                        text-align: left;
+                        transition: 0.4s;
+                    }
+
+
+                        .service-card-6 .inner .content .title a {
+                            color: #fff;
+                        }
+
+
+                    .service-card-6 .inner .content .description {
+                        margin-bottom: 0;
+                        font-weight: 400;
+                        text-align: left;
+                        color: #fff;
+                    }
+
+                .service-card-6 .inner .number-text {
+                    font-size: 100px;
+                    font-weight: 800;
+                    opacity: 0.05;
+                    display: inline-block;
+                    line-height: 70px;
+                    position: absolute;
+                    right: 15px;
+                    top: 15px;
+                    z-index: -1;
+                }
+
+        .site-wrapper {
+            background: #f4f4f4;
+            padding: 20px 15px;
+        }
+
+            .site-wrapper .sub-head {
+                margin: 0 0 10px;
+            }
+
+        .sub-head {
+            font-size: 20px;
+            font-weight: 600;
+            color: #032d60;
+            line-height: 28px;
+            margin: 5px 0 15px;
+        }
+
+        .site-wrapper ul li {
+            width: 30%;
+            display: inline-block;
+            line-height: 25px;
+            margin-bottom: 0;
+            font-size: 16px;
+            vertical-align: top;
+            margin-right: 15px;
+        }
+
+        .site-wrapper ul {
+            padding-left: 1rem;
+        }
+
+        .site-wrapper li::before {
+            background-color: #ff7f3e;
+            transform: translateY(16px);
+        }
+
+        .site-wrapper li::before, .site-wrapper li::before {
+            content: " ";
+            height: 8px;
+            margin-left: -16px;
+            width: 8px;
+            display: block;
+        }
+
+        .site-title {
+            border-left: 4px solid #ff7f3e;
+            padding: 10px 30px 10px 20px;
+            background: #fff;
+            -webkit-transition: all 0.4s ease;
+            -moz-transition: all 0.4s ease;
+            -ms-transition: all 0.4s ease;
+            -o-transition: all 0.4s ease;
+            transition: all 0.4s ease;
+            margin-bottom: 20px;
+        }
+        .site-title:hover {
+            background:#f1f1f1;
+            color:#000;
+        }
+    </style>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <section class="breadcumb-section wow fadeInUp position-relative" style="background: url(new-img/5939101-ai.png)">
+        <div class="cta-commmon-v1 cta-banner  mx-auto maxw1700 pt120 pb120  position-relative overflow-hidden d-flex align-items-center mx20-lg">
+
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <div class="position-relative text-center wow fadeInUp" data-wow-delay="300ms">
+                            <h2 class="">Sitemap</h2>
+                            <div class="breadcumb-style1">
+                                <div class="breadcumb-list">
+                                    <a href="Default.aspx">Home</a>
+                                    <a href="#">Sitemap</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section-padding">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <h2 class="text-center mb-5">
+                        MedResearch Ninja
+                    </h2>
+                    <div class="site-wrapper">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="site-title">
+                                    <a href="/about-us.aspx">About Us</a>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="site-title">
+                                    <a href="latest-work.aspx">Our Latest Work</a>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="site-title">
+                                    <a href="discussion-forum.aspx">Discussion Fourm</a>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="site-title">
+                                    <a href="resources.aspx">Resources</a>
+
+                                </div>
+                            </div>
+                         <%--   <div class="col-lg-4">
+                                <div class="site-title">
+                                    <a href="activities.aspx">Activities</a>
+
+                                </div>
+                            </div>--%>
+                            <div class="col-lg-4">
+                                <div class="site-title">
+                                    <a href="white-paper.aspx">Whitepaper</a>
+
+                                </div>
+                            </div>
+                           <%-- <div class="col-lg-4">
+                                <div class="site-title mb-0">
+                                    <a href="#">Projects</a>
+
+                                </div>
+                            </div>--%>
+                          <%--  <div class="col-lg-4">
+                                <div class="site-title">
+                                    <a href="Carrer.aspx">Carrer</a>
+
+                                </div>
+                            </div>--%>
+                            <div class="col-lg-4">
+                                <div class="site-title">
+                                    <a href="contact-us.aspx">Contact Us</a>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</asp:Content>
+

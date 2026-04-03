@@ -1,0 +1,29 @@
+services:
+  api:
+    build: .
+    ports:
+      - "8001:8001"
+    environment:
+      SECRET_KEY: ${SECRET_KEY:-change-me}
+      DATABASE_URL: postgresql://user:password@postgres:5432/medresearch
+      DOCKER_ENV: "true"
+      OLLAMA_BASE_URL: ${OLLAMA_BASE_URL:-http://host.docker.internal:11434}
+      CHROMA_DB_PATH: ${CHROMA_DB_PATH:-./chroma_db}
+      JWT_ALGORITHM: ${JWT_ALGORITHM:-HS256}
+      JWT_EXPIRE_MINUTES: ${JWT_EXPIRE_MINUTES:-60}
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:16
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: medresearch
+    volumes:
+      - medresearch_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  medresearch_postgres_data:

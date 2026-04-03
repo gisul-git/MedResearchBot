@@ -1,0 +1,5 @@
+.env
+medresearch-ai-service/venv311/
+medresearch-ai-service/.venv/
+**/__pycache__/
+*.pyc
