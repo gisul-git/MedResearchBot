@@ -1,0 +1,46 @@
+# Python virtual environments
+venv311/
+.venv/
+**/venv311/
+**/.venv/
+
+# Environment files
+.env
+**/.env
+
+# Python cache
+**/__pycache__/
+*.pyc
+*.pyo
+
+# ChromaDB
+chroma_db/
+**/chroma_db/
+
+# .NET build outputs
+bin/
+obj/
+packages/
+.vs/
+*.user
+
+# Large files
+*.dll
+*.pyd
+*.so
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test files
+test_phi.py
+
+# Logs
+*.log
+
+# Additional (optional)
+.env.local
+.env.production
+env/
+postgres_data/
