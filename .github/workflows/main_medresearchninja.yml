@@ -23,19 +23,59 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_2AA4741E2945421FB24AD0161FDE1871 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_4DAFE6F43D5242D5B906F0C4FCB51BDE }}
 
-      - name: Zip the web site folder
+      - name: Prepare deployment folder
         shell: pwsh
         run: |
-          Compress-Archive -Path medresearchninja.org-code\* -DestinationPath website.zip -Force
-          $size = (Get-Item website.zip).Length / 1MB
-          Write-Host "ZIP size: $size MB"
+          Write-Host "Copying files to temp folder..."
+          New-Item -ItemType Directory -Path "temp_deploy" -Force | Out-Null
+          Copy-Item -Path "medresearchninja.org-code\*" -Destination "temp_deploy\" -Recurse -Force
+          
+          Write-Host "Removing large and unnecessary folders..."
+          $removeFolders = @(
+            "Bin",
+            "UploadImages",
+            "wwwroot",
+            ".vs",
+            "obj"
+          )
+          foreach ($folder in $removeFolders) {
+            $path = "temp_deploy\$folder"
+            if (Test-Path $path) {
+              Remove-Item $path -Recurse -Force
+              Write-Host "Removed: $folder"
+            } else {
+              Write-Host "Not found (skipped): $folder"
+            }
+          }
+          
+          Write-Host "Removing large file types..."
+          Get-ChildItem "temp_deploy" -Recurse -Include "*.pdb","*.suo" | Remove-Item -Force -ErrorAction SilentlyContinue
+          
+          $remaining = (Get-ChildItem "temp_deploy" -Recurse -File | Measure-Object -Property Length -Sum).Sum / 1MB
+          Write-Host "Size after cleanup: $([math]::Round($remaining, 0)) MB"
+
+      - name: Create ZIP
+        shell: pwsh
+        run: |
+          Compress-Archive -Path "temp_deploy\*" -DestinationPath "website.zip" -CompressionLevel Fastest -Force
+          $zipSize = (Get-Item "website.zip").Length / 1MB
+          Write-Host "ZIP size: $([math]::Round($zipSize, 0)) MB"
 
       - name: Deploy via Azure CLI
         shell: pwsh
         run: |
+          Write-Host "Starting deployment..."
           az webapp deploy `
             --resource-group MedResearchNinja `
             --name medresearchninja `
             --src-path website.zip `
             --type zip `
-            --async false
+            --timeout 600
+
+      - name: Cleanup temp files
+        shell: pwsh
+        if: always()
+        run: |
+          Remove-Item "temp_deploy" -Recurse -Force -ErrorAction SilentlyContinue
+          Remove-Item "website.zip" -Force -ErrorAction SilentlyContinue
+          Write-Host "Cleanup complete"
