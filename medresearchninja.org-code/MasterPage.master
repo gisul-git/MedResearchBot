@@ -434,7 +434,7 @@
         </form>
     </div>
 <script>
-  window.MEDRESEARCH_API_URL = 'http://localhost:8001';
+  window.MEDRESEARCH_API_URL = 'https://medresearch-api-b7etc0gehea0cegw.southindia-01.azurewebsites.net';
 </script>
 <script src="js/medresearch-chat.js"></script>
 </body>
