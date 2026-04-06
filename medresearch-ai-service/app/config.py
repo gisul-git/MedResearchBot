@@ -5,24 +5,31 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-def _get_env(key: str, default: str) -> str:
-    value = os.getenv(key)
-    return value if value not in (None, "") else default
+class Settings:
+    DATABASE_URL: str = os.getenv("DATABASE_URL", "")
+    SECRET_KEY: str = os.getenv("SECRET_KEY", "")
+    OLLAMA_BASE_URL: str = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
+    CHROMA_DB_PATH: str = os.getenv("CHROMA_DB_PATH", "./chroma_db")
+    JWT_ALGORITHM: str = os.getenv("JWT_ALGORITHM", "HS256")
+    JWT_EXPIRE_MINUTES: int = int(os.getenv("JWT_EXPIRE_MINUTES", "60"))
+    ALLOWED_ORIGIN: str = os.getenv("ALLOWED_ORIGIN", "http://localhost:64631")
+    DOCKER_ENV: bool = os.getenv("DOCKER_ENV", "false").lower() == "true"
 
 
-SECRET_KEY: str = _get_env("SECRET_KEY", "change-me")
-DATABASE_URL: str = _get_env(
-    "DATABASE_URL",
-    "postgresql://user:password@localhost:5432/medresearch",
-)
-OLLAMA_BASE_URL: str = _get_env("OLLAMA_BASE_URL", "http://localhost:11434")
-if _get_env("DOCKER_ENV", "false").lower() == "true":
+settings = Settings()
+
+# Backwards-compatible module-level constants used across the app.
+SECRET_KEY: str = settings.SECRET_KEY
+DATABASE_URL: str = settings.DATABASE_URL
+OLLAMA_BASE_URL: str = settings.OLLAMA_BASE_URL
+if settings.DOCKER_ENV:
     # Inside Docker on Windows/Mac, `localhost` refers to the container itself.
     # `host.docker.internal` routes back to the host machine's Ollama.
     OLLAMA_BASE_URL = OLLAMA_BASE_URL.replace("localhost", "host.docker.internal")
-CHROMA_DB_PATH: str = _get_env("CHROMA_DB_PATH", "./chroma_db")
-JWT_ALGORITHM: str = _get_env("JWT_ALGORITHM", "HS256")
-JWT_EXPIRE_MINUTES: int = int(_get_env("JWT_EXPIRE_MINUTES", "60"))
+CHROMA_DB_PATH: str = settings.CHROMA_DB_PATH
+JWT_ALGORITHM: str = settings.JWT_ALGORITHM
+JWT_EXPIRE_MINUTES: int = settings.JWT_EXPIRE_MINUTES
+ALLOWED_ORIGIN: str = settings.ALLOWED_ORIGIN
 
 
 def sqlalchemy_database_url(database_url: str = DATABASE_URL) -> str:

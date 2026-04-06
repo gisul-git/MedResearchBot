@@ -5,12 +5,15 @@ from sqlalchemy.dialects.postgresql import UUID as PG_UUID
 from sqlalchemy.orm import declarative_base, sessionmaker
 from sqlalchemy.sql import func
 
-from app.config import sqlalchemy_database_url
+from app.config import DATABASE_URL, sqlalchemy_database_url
 
 # SQLAlchemy engine setup using DATABASE_URL from `.env`.
+database_url = DATABASE_URL or ""
 engine = create_engine(
-    sqlalchemy_database_url(),
+    sqlalchemy_database_url(database_url),
+    connect_args={"sslmode": "require"} if "neon.tech" in database_url else {},
     pool_pre_ping=True,
+    pool_recycle=300,
 )
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
