@@ -39,7 +39,7 @@ test_phi.py
 # Logs
 *.log
 
-# Additional (optional)
+# Additional 
 .env.local
 .env.production
 env/
