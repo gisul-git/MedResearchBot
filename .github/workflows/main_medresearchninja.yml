@@ -29,7 +29,7 @@ jobs:
           New-Item -ItemType Directory -Path "temp_deploy" -Force | Out-Null
           Copy-Item -Path "medresearchninja.org-code\*" -Destination "temp_deploy\" -Recurse -Force
           
-          $removeFolders = @("Bin","UploadImages","wwwroot",".vs","obj")
+          $removeFolders = @("UploadImages","wwwroot",".vs","obj")
           foreach ($folder in $removeFolders) {
             $path = "temp_deploy\$folder"
             if (Test-Path $path) {
