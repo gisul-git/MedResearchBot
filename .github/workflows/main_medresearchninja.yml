@@ -16,10 +16,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Zip the web site folder
-        run: |
-          Compress-Archive -Path medresearchninja.org-code\* -DestinationPath website.zip
-
       - name: Login to Azure
         uses: azure/login@v2
         with:
@@ -27,9 +23,19 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_2AA4741E2945421FB24AD0161FDE1871 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_4DAFE6F43D5242D5B906F0C4FCB51BDE }}
 
-      - name: Deploy to Azure Web App
-        uses: azure/webapps-deploy@v3
-        with:
-          app-name: 'medresearchninja'
-          slot-name: 'Production'
-          package: website.zip
+      - name: Zip the web site folder
+        shell: pwsh
+        run: |
+          Compress-Archive -Path medresearchninja.org-code\* -DestinationPath website.zip -Force
+          $size = (Get-Item website.zip).Length / 1MB
+          Write-Host "ZIP size: $size MB"
+
+      - name: Deploy via Azure CLI
+        shell: pwsh
+        run: |
+          az webapp deploy `
+            --resource-group MedResearchNinja `
+            --name medresearchninja `
+            --src-path website.zip `
+            --type zip `
+            --async false
