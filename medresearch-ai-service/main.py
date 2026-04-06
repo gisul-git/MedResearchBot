@@ -161,6 +161,7 @@ app.add_middleware(
         "http://localhost:5000",
         "http://localhost:3000",
         os.getenv("ALLOWED_ORIGIN", "http://localhost:64631"),
+        "https://medresearchninja-cgaseea0b0ejgyfq.southindia-01.azurewebsites.net",
     ],
     allow_credentials=True,
     allow_methods=["*"],
