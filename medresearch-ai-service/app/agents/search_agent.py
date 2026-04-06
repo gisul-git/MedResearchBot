@@ -234,38 +234,8 @@ class SearchAgent:
         out.sort(key=lambda x: float(x.get("relevance_score") or 0.0), reverse=True)
         return out[: max_pubmed_results]
 
-    def _search_chroma(self, query: str, k: int = 5) -> List[Dict[str, Any]]:
-        vectorstore = self._get_chroma()
-
-        try:
-            pairs = vectorstore.similarity_search_with_relevance_scores(query, k=k)
-            docs_and_scores: List[Tuple[Any, float]] = [(d, float(s)) for d, s in pairs]
-        except Exception:
-            # Fallback if method not available.
-            docs = vectorstore.similarity_search(query, k=k)
-            docs_and_scores = [(d, 0.0) for d in docs]
-
-        out: List[Dict[str, Any]] = []
-        for doc, score in docs_and_scores:
-            md = getattr(doc, "metadata", {}) or {}
-            doc_id = md.get("doc_id")
-            if not doc_id:
-                source_file = md.get("source_file") or ""
-                page_number = md.get("page_number")
-                chunk_index = md.get("chunk_index")
-                doc_id = f"{source_file}:{page_number}:{chunk_index}"
-
-            out.append(
-                {
-                    "title": str(md.get("source_file") or ""),
-                    "authors": [],
-                    "abstract": str(getattr(doc, "page_content", "") or "")[:2000],
-                    "source": "local_docs",
-                    "year": md.get("year"),
-                    "pmid_or_doc_id": doc_id,
-                    "relevance_score": score,
-                }
-            )
-
-        return out
+    def _search_chroma(self, query: str, k: int = 5):
+        import logging
+        logging.warning("ChromaDB skipped on cloud - using PubMed only")
+        return []
 
