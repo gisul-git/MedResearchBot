@@ -26,29 +26,18 @@ jobs:
       - name: Prepare deployment folder
         shell: pwsh
         run: |
-          Write-Host "Copying files to temp folder..."
           New-Item -ItemType Directory -Path "temp_deploy" -Force | Out-Null
           Copy-Item -Path "medresearchninja.org-code\*" -Destination "temp_deploy\" -Recurse -Force
           
-          Write-Host "Removing large and unnecessary folders..."
-          $removeFolders = @(
-            "Bin",
-            "UploadImages",
-            "wwwroot",
-            ".vs",
-            "obj"
-          )
+          $removeFolders = @("Bin","UploadImages","wwwroot",".vs","obj")
           foreach ($folder in $removeFolders) {
             $path = "temp_deploy\$folder"
             if (Test-Path $path) {
               Remove-Item $path -Recurse -Force
               Write-Host "Removed: $folder"
-            } else {
-              Write-Host "Not found (skipped): $folder"
             }
           }
           
-          Write-Host "Removing large file types..."
           Get-ChildItem "temp_deploy" -Recurse -Include "*.pdb","*.suo" | Remove-Item -Force -ErrorAction SilentlyContinue
           
           $remaining = (Get-ChildItem "temp_deploy" -Recurse -File | Measure-Object -Property Length -Sum).Sum / 1MB
@@ -70,7 +59,20 @@ jobs:
             --name medresearchninja `
             --src-path website.zip `
             --type zip `
-            --timeout 600
+            --async true
+          Write-Host "Deployment initiated - check Azure Portal for status"
+
+      - name: Wait for deployment
+        shell: pwsh
+        run: |
+          Write-Host "Waiting 60 seconds for deployment to complete..."
+          Start-Sleep -Seconds 60
+          Write-Host "Checking deployment status..."
+          az webapp show `
+            --resource-group MedResearchNinja `
+            --name medresearchninja `
+            --query "state" `
+            --output tsv
 
       - name: Cleanup temp files
         shell: pwsh
