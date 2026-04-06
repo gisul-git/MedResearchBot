@@ -16,6 +16,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Zip the web site folder
+        run: |
+          Compress-Archive -Path medresearchninja.org-code\* -DestinationPath website.zip
+
       - name: Login to Azure
         uses: azure/login@v2
         with:
@@ -28,4 +32,4 @@ jobs:
         with:
           app-name: 'medresearchninja'
           slot-name: 'Production'
-          package: medresearchninja.org-code
+          package: website.zip
